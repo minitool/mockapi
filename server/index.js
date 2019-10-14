@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = 3000;
+const port = 7000;
 
 const data = fs.readFileSync('./memo.json');
 const dataJSON = JSON.parse(data);
@@ -41,7 +41,7 @@ app.post('/path', (req, res) => {
 app.get('/path/:id', (req, res) => {
   const { id } = req.params;
   const availableData = dataJSON[id];
-  
+
   if (availableData === undefined) {
     res.send('the page does not have any data')
   } else {
@@ -52,7 +52,7 @@ app.get('/path/:id', (req, res) => {
     } else {
       res.send(availableDataBody);
     }
-  } 
+  }
 });
 
 app.listen(port, () => console.log(`app listening on port ${port}!`));
